@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ConsumerRegistrationPortal.BusinessLayer.Dtos.HTMLGenerationEntity>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RecordId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CampaignId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HTMLElement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabelText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HoverText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Searchable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.required)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValidationText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DetailsValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DetailsSortOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DetailsSelected)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RecordId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CampaignId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HTMLElement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LabelText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoverText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Searchable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SortOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.required)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValidationText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetailsValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetailsSortOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DetailsSelected)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

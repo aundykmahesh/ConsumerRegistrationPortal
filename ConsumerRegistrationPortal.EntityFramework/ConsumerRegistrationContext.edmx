@@ -1,0 +1,1877 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ConsumerRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Campaigns">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientId" Type="bigint" Nullable="false" />
+          <Property Name="CampaignName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Client_StoredProcedures">
+          <Key>
+            <PropertyRef Name="ClientSPId" />
+          </Key>
+          <Property Name="ClientSPId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="Get_SPName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Match_SpName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Client_StoredProcedures_attr">
+          <Key>
+            <PropertyRef Name="AttrId" />
+          </Key>
+          <Property Name="AttrId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminologyId" Type="bigint" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="AttributeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColumnName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Datatype" Type="nvarchar" MaxLength="50" />
+          <Property Name="SortOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Client_TestCampaign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="ConsumerId" Type="bigint" Nullable="false" />
+          <Property Name="AssessmentNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AssessmentAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AssessmentNotice" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Colors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="ColorCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="OldColorCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ColorText">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ColorId" Type="int" />
+          <Property Name="Text" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConsentMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConsumerEmails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsumerId" Type="bigint" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="IsPrimaryEMail" Type="bit" Nullable="false" />
+          <Property Name="EMailVerificationStatus" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateDeactivated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ConsumerImports">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="ConsumerReferenceNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="AddressLine3" Type="nvarchar(max)" />
+          <Property Name="AddressLine4" Type="nvarchar(max)" />
+          <Property Name="Suburb" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ConsumerReference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsumerReferenceNumber" Type="nvarchar(max)" />
+          <Property Name="ConsumerId" Type="bigint" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SurName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressLine1" Type="nvarchar(max)" />
+          <Property Name="AddressLine2" Type="nvarchar(max)" />
+          <Property Name="AddressLine3" Type="nvarchar(max)" />
+          <Property Name="AddressLine4" Type="nvarchar(max)" />
+          <Property Name="Suburb" Type="nvarchar" MaxLength="50" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Consumers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserCampaignMappingId" Type="bigint" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="ActiveFlag" Type="bit" Nullable="false" />
+          <Property Name="Consent" Type="int" />
+          <Property Name="TandCAcceptedDate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Correspondences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsumerReferenceId" Type="bigint" Nullable="false" />
+          <Property Name="ConsumerCorrespondenceDate" Type="datetime" Nullable="false" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BalanceDue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SecurDocsReference" Type="nvarchar(max)" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMailVerificationStatusMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HTMLMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ElementName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ImageLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ImagesDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="varchar(max)" Nullable="false" />
+          <Property Name="CallSite" Type="varchar(max)" Nullable="false" />
+          <Property Name="Type" Type="varchar(max)" Nullable="false" />
+          <Property Name="Message" Type="varchar(max)" Nullable="false" />
+          <Property Name="StackTrace" Type="varchar(max)" Nullable="false" />
+          <Property Name="InnerException" Type="varchar(max)" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="varchar(max)" Nullable="false" />
+          <Property Name="LoggedOnDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistrationLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsumerId" Type="bigint" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="int" Nullable="false" />
+          <Property Name="StatusChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="StatusChangedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistrationStatusMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ConsumerRegistration.dbo.SPAttributes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SPAttributes">
+          <Key>
+            <PropertyRef Name="AttrId" />
+            <PropertyRef Name="TerminologyId" />
+            <PropertyRef Name="CampaignId" />
+            <PropertyRef Name="AttributeName" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="ColumnName" />
+            <PropertyRef Name="Datatype" />
+          </Key>
+          <Property Name="AttrId" Type="bigint" Nullable="false" />
+          <Property Name="TerminologyId" Type="bigint" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="AttributeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ColumnName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Datatype" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terminologies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="HTMLElementID" Type="int" Nullable="false" />
+          <Property Name="TerminologyKey" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TerminologyText" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Searchable" Type="bit" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="isMandatory" Type="bit" Nullable="false" />
+          <Property Name="ValidationId" Type="bigint" />
+          <Property Name="CreatedBy" Type="nchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TerminologiesDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TerminologiesId" Type="bigint" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SortOrder" Type="int" Nullable="false" />
+          <Property Name="Selected" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TermsAndConditions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+          <Property Name="TermsAndConditions" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserCampaignMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="CampaignId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ValidationMaster">
+          <Key>
+            <PropertyRef Name="ValidationId" />
+          </Key>
+          <Property Name="ValidationId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ValidationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Campaign_1_Clients">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Campaigns">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_StoredProcedures_attr_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="Client_StoredProcedures_attr" Type="Self.Client_StoredProcedures_attr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_StoredProcedures_attr">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_StoredProcedures_Client_StoredProcedures">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="Client_StoredProcedures" Type="Self.Client_StoredProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_StoredProcedures">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colors_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="Colors" Type="Self.Colors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colors">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorText_Colors">
+          <End Role="Colors" Type="Self.Colors" Multiplicity="0..1" />
+          <End Role="ColorText" Type="Self.ColorText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ColorText">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerEmails_ConsumerEmails">
+          <End Role="Consumers" Type="Self.Consumers" Multiplicity="1" />
+          <End Role="ConsumerEmails" Type="Self.ConsumerEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerEmails">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerEmails_EMailVerificationStatusMaster">
+          <End Role="EMailVerificationStatusMaster" Type="Self.EMailVerificationStatusMaster" Multiplicity="1" />
+          <End Role="ConsumerEmails" Type="Self.ConsumerEmails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMailVerificationStatusMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerEmails">
+              <PropertyRef Name="EMailVerificationStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerImports_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="ConsumerImports" Type="Self.ConsumerImports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerImports">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerReference_Consumers">
+          <End Role="Consumers" Type="Self.Consumers" Multiplicity="1" />
+          <End Role="ConsumerReference" Type="Self.ConsumerReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerReference">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumers_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="Consumers" Type="Self.Consumers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consumers">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumers_ConsentMaster">
+          <End Role="ConsentMaster" Type="Self.ConsentMaster" Multiplicity="0..1" />
+          <End Role="Consumers" Type="Self.Consumers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsentMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consumers">
+              <PropertyRef Name="Consent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumers_UserCampaignMapping">
+          <End Role="UserCampaignMapping" Type="Self.UserCampaignMapping" Multiplicity="1" />
+          <End Role="Consumers" Type="Self.Consumers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCampaignMapping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consumers">
+              <PropertyRef Name="UserCampaignMappingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Correspondences_ConsumerReference">
+          <End Role="ConsumerReference" Type="Self.ConsumerReference" Multiplicity="1" />
+          <End Role="Correspondences" Type="Self.Correspondences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsumerReference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Correspondences">
+              <PropertyRef Name="ConsumerReferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagesDetails_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="ImagesDetails" Type="Self.ImagesDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagesDetails">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagesDetails_Images">
+          <End Role="Images" Type="Self.Images" Multiplicity="1" />
+          <End Role="ImagesDetails" Type="Self.ImagesDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagesDetails">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrationLog_Consumers">
+          <End Role="Consumers" Type="Self.Consumers" Multiplicity="1" />
+          <End Role="RegistrationLog" Type="Self.RegistrationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegistrationLog">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrationLog_RegistrationStatusMaster">
+          <End Role="RegistrationStatusMaster" Type="Self.RegistrationStatusMaster" Multiplicity="1" />
+          <End Role="RegistrationLog" Type="Self.RegistrationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrationStatusMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegistrationLog">
+              <PropertyRef Name="RegistrationStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPAttributes_Campaigns">
+          <End Role="Terminologies" Type="Self.Terminologies" Multiplicity="1" />
+          <End Role="Client_StoredProcedures_attr" Type="Self.Client_StoredProcedures_attr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_StoredProcedures_attr">
+              <PropertyRef Name="TerminologyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPAttributes_Terminologies">
+          <End Role="Terminologies" Type="Self.Terminologies" Multiplicity="1" />
+          <End Role="SPAttributes" Type="Self.SPAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SPAttributes">
+              <PropertyRef Name="TerminologyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Terminologies_Campaigns">
+          <End Role="ValidationMaster" Type="Self.ValidationMaster" Multiplicity="0..1" />
+          <End Role="Terminologies" Type="Self.Terminologies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValidationMaster">
+              <PropertyRef Name="ValidationId" />
+            </Principal>
+            <Dependent Role="Terminologies">
+              <PropertyRef Name="ValidationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Terminologies_HTMLMaster">
+          <End Role="HTMLMaster" Type="Self.HTMLMaster" Multiplicity="1" />
+          <End Role="Terminologies" Type="Self.Terminologies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HTMLMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Terminologies">
+              <PropertyRef Name="HTMLElementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerminologiesDetails_Terminologies">
+          <End Role="Terminologies" Type="Self.Terminologies" Multiplicity="1" />
+          <End Role="TerminologiesDetails" Type="Self.TerminologiesDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TerminologiesDetails">
+              <PropertyRef Name="TerminologiesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TermsAndConditions_TermsAndConditions">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="TermsAndConditions" Type="Self.TermsAndConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TermsAndConditions">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCampaignMapping_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaigns" Multiplicity="1" />
+          <End Role="UserCampaignMapping" Type="Self.UserCampaignMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCampaignMapping">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValidationMaster_ValidationMaster">
+          <End Role="ValidationMaster" Type="Self.ValidationMaster" Multiplicity="1" />
+          <End Role="ValidationMaster1" Type="Self.ValidationMaster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ValidationMaster">
+              <PropertyRef Name="ValidationId" />
+            </Principal>
+            <Dependent Role="ValidationMaster1">
+              <PropertyRef Name="ValidationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="PerformMatch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="attributes" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="campaignId" Type="bigint" Mode="In" />
+        </Function>
+        <EntityContainer Name="ConsumerRegistrationModelStoreContainer">
+          <EntitySet Name="Campaigns" EntityType="Self.Campaigns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_StoredProcedures" EntityType="Self.Client_StoredProcedures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_StoredProcedures_attr" EntityType="Self.Client_StoredProcedures_attr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client_TestCampaign" EntityType="Self.Client_TestCampaign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colors" EntityType="Self.Colors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorText" EntityType="Self.ColorText" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsentMaster" EntityType="Self.ConsentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsumerEmails" EntityType="Self.ConsumerEmails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsumerImports" EntityType="Self.ConsumerImports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConsumerReference" EntityType="Self.ConsumerReference" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consumers" EntityType="Self.Consumers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Correspondences" EntityType="Self.Correspondences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMailVerificationStatusMaster" EntityType="Self.EMailVerificationStatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HTMLMaster" EntityType="Self.HTMLMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImagesDetails" EntityType="Self.ImagesDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationLog" EntityType="Self.RegistrationLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationStatusMaster" EntityType="Self.RegistrationStatusMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terminologies" EntityType="Self.Terminologies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerminologiesDetails" EntityType="Self.TerminologiesDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TermsAndConditions" EntityType="Self.TermsAndConditions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCampaignMapping" EntityType="Self.UserCampaignMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ValidationMaster" EntityType="Self.ValidationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SPAttributes" EntityType="Self.SPAttributes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SPAttributes].[AttrId] AS [AttrId], 
+    [SPAttributes].[TerminologyId] AS [TerminologyId], 
+    [SPAttributes].[CampaignId] AS [CampaignId], 
+    [SPAttributes].[AttributeName] AS [AttributeName], 
+    [SPAttributes].[TableName] AS [TableName], 
+    [SPAttributes].[ColumnName] AS [ColumnName], 
+    [SPAttributes].[Datatype] AS [Datatype]
+    FROM [dbo].[SPAttributes] AS [SPAttributes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Campaign_1_Clients" Association="Self.FK_Campaign_1_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Campaigns" EntitySet="Campaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_StoredProcedures_attr_Campaigns" Association="Self.FK_Client_StoredProcedures_attr_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Client_StoredProcedures_attr" EntitySet="Client_StoredProcedures_attr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_StoredProcedures_Client_StoredProcedures" Association="Self.FK_Client_StoredProcedures_Client_StoredProcedures">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Client_StoredProcedures" EntitySet="Client_StoredProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colors_Campaigns" Association="Self.FK_Colors_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Colors" EntitySet="Colors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorText_Colors" Association="Self.FK_ColorText_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="ColorText" EntitySet="ColorText" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerEmails_ConsumerEmails" Association="Self.FK_ConsumerEmails_ConsumerEmails">
+            <End Role="Consumers" EntitySet="Consumers" />
+            <End Role="ConsumerEmails" EntitySet="ConsumerEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerEmails_EMailVerificationStatusMaster" Association="Self.FK_ConsumerEmails_EMailVerificationStatusMaster">
+            <End Role="EMailVerificationStatusMaster" EntitySet="EMailVerificationStatusMaster" />
+            <End Role="ConsumerEmails" EntitySet="ConsumerEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerImports_Campaigns" Association="Self.FK_ConsumerImports_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="ConsumerImports" EntitySet="ConsumerImports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerReference_Consumers" Association="Self.FK_ConsumerReference_Consumers">
+            <End Role="Consumers" EntitySet="Consumers" />
+            <End Role="ConsumerReference" EntitySet="ConsumerReference" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumers_Campaigns" Association="Self.FK_Consumers_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Consumers" EntitySet="Consumers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumers_ConsentMaster" Association="Self.FK_Consumers_ConsentMaster">
+            <End Role="ConsentMaster" EntitySet="ConsentMaster" />
+            <End Role="Consumers" EntitySet="Consumers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumers_UserCampaignMapping" Association="Self.FK_Consumers_UserCampaignMapping">
+            <End Role="UserCampaignMapping" EntitySet="UserCampaignMapping" />
+            <End Role="Consumers" EntitySet="Consumers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Correspondences_ConsumerReference" Association="Self.FK_Correspondences_ConsumerReference">
+            <End Role="ConsumerReference" EntitySet="ConsumerReference" />
+            <End Role="Correspondences" EntitySet="Correspondences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagesDetails_Campaigns" Association="Self.FK_ImagesDetails_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="ImagesDetails" EntitySet="ImagesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagesDetails_Images" Association="Self.FK_ImagesDetails_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImagesDetails" EntitySet="ImagesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrationLog_Consumers" Association="Self.FK_RegistrationLog_Consumers">
+            <End Role="Consumers" EntitySet="Consumers" />
+            <End Role="RegistrationLog" EntitySet="RegistrationLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrationLog_RegistrationStatusMaster" Association="Self.FK_RegistrationLog_RegistrationStatusMaster">
+            <End Role="RegistrationStatusMaster" EntitySet="RegistrationStatusMaster" />
+            <End Role="RegistrationLog" EntitySet="RegistrationLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPAttributes_Campaigns" Association="Self.FK_SPAttributes_Campaigns">
+            <End Role="Terminologies" EntitySet="Terminologies" />
+            <End Role="Client_StoredProcedures_attr" EntitySet="Client_StoredProcedures_attr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPAttributes_Terminologies" Association="Self.FK_SPAttributes_Terminologies">
+            <End Role="Terminologies" EntitySet="Terminologies" />
+            <End Role="SPAttributes" EntitySet="SPAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Terminologies_Campaigns" Association="Self.FK_Terminologies_Campaigns">
+            <End Role="ValidationMaster" EntitySet="ValidationMaster" />
+            <End Role="Terminologies" EntitySet="Terminologies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Terminologies_HTMLMaster" Association="Self.FK_Terminologies_HTMLMaster">
+            <End Role="HTMLMaster" EntitySet="HTMLMaster" />
+            <End Role="Terminologies" EntitySet="Terminologies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerminologiesDetails_Terminologies" Association="Self.FK_TerminologiesDetails_Terminologies">
+            <End Role="Terminologies" EntitySet="Terminologies" />
+            <End Role="TerminologiesDetails" EntitySet="TerminologiesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TermsAndConditions_TermsAndConditions" Association="Self.FK_TermsAndConditions_TermsAndConditions">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="TermsAndConditions" EntitySet="TermsAndConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCampaignMapping_Campaigns" Association="Self.FK_UserCampaignMapping_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="UserCampaignMapping" EntitySet="UserCampaignMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValidationMaster_ValidationMaster" Association="Self.FK_ValidationMaster_ValidationMaster">
+            <End Role="ValidationMaster" EntitySet="ValidationMaster" />
+            <End Role="ValidationMaster1" EntitySet="ValidationMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ConsumerRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Campaign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientId" Type="Int64" Nullable="false" />
+          <Property Name="CampaignName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Campaign_1_Clients" FromRole="Campaigns" ToRole="Clients" />
+          <NavigationProperty Name="Client_StoredProcedures_attr" Relationship="Self.FK_Client_StoredProcedures_attr_Campaigns" FromRole="Campaigns" ToRole="Client_StoredProcedures_attr" />
+          <NavigationProperty Name="Client_StoredProcedures" Relationship="Self.FK_Client_StoredProcedures_Client_StoredProcedures" FromRole="Campaigns" ToRole="Client_StoredProcedures" />
+          <NavigationProperty Name="Colors" Relationship="Self.FK_Colors_Campaigns" FromRole="Campaigns" ToRole="Colors" />
+          <NavigationProperty Name="ConsumerImports" Relationship="Self.FK_ConsumerImports_Campaigns" FromRole="Campaigns" ToRole="ConsumerImports" />
+          <NavigationProperty Name="Consumers" Relationship="Self.FK_Consumers_Campaigns" FromRole="Campaigns" ToRole="Consumers" />
+          <NavigationProperty Name="ImagesDetails" Relationship="Self.FK_ImagesDetails_Campaigns" FromRole="Campaigns" ToRole="ImagesDetails" />
+          <NavigationProperty Name="TermsAndConditions" Relationship="Self.FK_TermsAndConditions_TermsAndConditions" FromRole="Campaigns" ToRole="TermsAndConditions" />
+          <NavigationProperty Name="UserCampaignMappings" Relationship="Self.FK_UserCampaignMapping_Campaigns" FromRole="Campaigns" ToRole="UserCampaignMapping" />
+        </EntityType>
+        <EntityType Name="Client_StoredProcedures">
+          <Key>
+            <PropertyRef Name="ClientSPId" />
+          </Key>
+          <Property Name="ClientSPId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="Get_SPName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Match_SpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_Client_StoredProcedures_Client_StoredProcedures" FromRole="Client_StoredProcedures" ToRole="Campaigns" />
+        </EntityType>
+        <EntityType Name="Client_StoredProcedures_attr">
+          <Key>
+            <PropertyRef Name="AttrId" />
+          </Key>
+          <Property Name="AttrId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminologyId" Type="Int64" Nullable="false" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="AttributeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ColumnName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Datatype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_Client_StoredProcedures_attr_Campaigns" FromRole="Client_StoredProcedures_attr" ToRole="Campaigns" />
+          <NavigationProperty Name="Terminology" Relationship="Self.FK_SPAttributes_Campaigns" FromRole="Client_StoredProcedures_attr" ToRole="Terminologies" />
+        </EntityType>
+        <EntityType Name="Client_TestCampaign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="ConsumerId" Type="Int64" Nullable="false" />
+          <Property Name="AssessmentNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssessmentAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AssessmentNotice" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Campaigns" Relationship="Self.FK_Campaign_1_Clients" FromRole="Clients" ToRole="Campaigns" />
+        </EntityType>
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="ColorCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OldColorCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_Colors_Campaigns" FromRole="Colors" ToRole="Campaigns" />
+          <NavigationProperty Name="ColorTexts" Relationship="Self.FK_ColorText_Colors" FromRole="Colors" ToRole="ColorText" />
+        </EntityType>
+        <EntityType Name="ColorText">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ColorId" Type="Int32" />
+          <Property Name="Text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Color" Relationship="Self.FK_ColorText_Colors" FromRole="ColorText" ToRole="Colors" />
+        </EntityType>
+        <EntityType Name="ConsentMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Consumers" Relationship="Self.FK_Consumers_ConsentMaster" FromRole="ConsentMaster" ToRole="Consumers" />
+        </EntityType>
+        <EntityType Name="ConsumerEmail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsumerId" Type="Int64" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="IsPrimaryEMail" Type="Boolean" Nullable="false" />
+          <Property Name="EMailVerificationStatus" Type="Int32" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateDeactivated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Consumer" Relationship="Self.FK_ConsumerEmails_ConsumerEmails" FromRole="ConsumerEmails" ToRole="Consumers" />
+          <NavigationProperty Name="EMailVerificationStatusMaster" Relationship="Self.FK_ConsumerEmails_EMailVerificationStatusMaster" FromRole="ConsumerEmails" ToRole="EMailVerificationStatusMaster" />
+        </EntityType>
+        <EntityType Name="ConsumerImport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="ConsumerReferenceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Suburb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_ConsumerImports_Campaigns" FromRole="ConsumerImports" ToRole="Campaigns" />
+        </EntityType>
+        <EntityType Name="ConsumerReference">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsumerReferenceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsumerId" Type="Int64" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SurName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLine4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Suburb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Consumer" Relationship="Self.FK_ConsumerReference_Consumers" FromRole="ConsumerReference" ToRole="Consumers" />
+          <NavigationProperty Name="Correspondences" Relationship="Self.FK_Correspondences_ConsumerReference" FromRole="ConsumerReference" ToRole="Correspondences" />
+        </EntityType>
+        <EntityType Name="Consumer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserCampaignMappingId" Type="Int64" Nullable="false" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="ActiveFlag" Type="Boolean" Nullable="false" />
+          <Property Name="Consent" Type="Int32" />
+          <Property Name="TandCAcceptedDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_Consumers_Campaigns" FromRole="Consumers" ToRole="Campaigns" />
+          <NavigationProperty Name="ConsentMaster" Relationship="Self.FK_Consumers_ConsentMaster" FromRole="Consumers" ToRole="ConsentMaster" />
+          <NavigationProperty Name="ConsumerEmails" Relationship="Self.FK_ConsumerEmails_ConsumerEmails" FromRole="Consumers" ToRole="ConsumerEmails" />
+          <NavigationProperty Name="ConsumerReferences" Relationship="Self.FK_ConsumerReference_Consumers" FromRole="Consumers" ToRole="ConsumerReference" />
+          <NavigationProperty Name="UserCampaignMapping" Relationship="Self.FK_Consumers_UserCampaignMapping" FromRole="Consumers" ToRole="UserCampaignMapping" />
+          <NavigationProperty Name="RegistrationLogs" Relationship="Self.FK_RegistrationLog_Consumers" FromRole="Consumers" ToRole="RegistrationLog" />
+        </EntityType>
+        <EntityType Name="Correspondence">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsumerReferenceId" Type="Int64" Nullable="false" />
+          <Property Name="ConsumerCorrespondenceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="BalanceDue" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="SecurDocsReference" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ConsumerReference" Relationship="Self.FK_Correspondences_ConsumerReference" FromRole="Correspondences" ToRole="ConsumerReference" />
+        </EntityType>
+        <EntityType Name="EMailVerificationStatusMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ConsumerEmails" Relationship="Self.FK_ConsumerEmails_EMailVerificationStatusMaster" FromRole="EMailVerificationStatusMaster" ToRole="ConsumerEmails" />
+        </EntityType>
+        <EntityType Name="HTMLMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ElementName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Terminologies" Relationship="Self.FK_Terminologies_HTMLMaster" FromRole="HTMLMaster" ToRole="Terminologies" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ImageLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="ImagesDetails" Relationship="Self.FK_ImagesDetails_Images" FromRole="Images" ToRole="ImagesDetails" />
+        </EntityType>
+        <EntityType Name="ImagesDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_ImagesDetails_Campaigns" FromRole="ImagesDetails" ToRole="Campaigns" />
+          <NavigationProperty Name="Image" Relationship="Self.FK_ImagesDetails_Images" FromRole="ImagesDetails" ToRole="Images" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CallSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="InnerException" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoggedOnDate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="RegistrationLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsumerId" Type="Int64" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="Int32" Nullable="false" />
+          <Property Name="StatusChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusChangedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Consumer" Relationship="Self.FK_RegistrationLog_Consumers" FromRole="RegistrationLog" ToRole="Consumers" />
+          <NavigationProperty Name="RegistrationStatusMaster" Relationship="Self.FK_RegistrationLog_RegistrationStatusMaster" FromRole="RegistrationLog" ToRole="RegistrationStatusMaster" />
+        </EntityType>
+        <EntityType Name="RegistrationStatusMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="RegistrationLogs" Relationship="Self.FK_RegistrationLog_RegistrationStatusMaster" FromRole="RegistrationStatusMaster" ToRole="RegistrationLog" />
+        </EntityType>
+        <EntityType Name="Terminology">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="HTMLElementID" Type="Int32" Nullable="false" />
+          <Property Name="TerminologyKey" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TerminologyText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Searchable" Type="Boolean" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="isMandatory" Type="Boolean" Nullable="false" />
+          <Property Name="ValidationId" Type="Int64" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Client_StoredProcedures_attr" Relationship="Self.FK_SPAttributes_Campaigns" FromRole="Terminologies" ToRole="Client_StoredProcedures_attr" />
+          <NavigationProperty Name="HTMLMaster" Relationship="Self.FK_Terminologies_HTMLMaster" FromRole="Terminologies" ToRole="HTMLMaster" />
+          <NavigationProperty Name="SPAttributes" Relationship="Self.FK_SPAttributes_Terminologies" FromRole="Terminologies" ToRole="SPAttributes" />
+          <NavigationProperty Name="ValidationMaster" Relationship="Self.FK_Terminologies_Campaigns" FromRole="Terminologies" ToRole="ValidationMaster" />
+          <NavigationProperty Name="TerminologiesDetails" Relationship="Self.FK_TerminologiesDetails_Terminologies" FromRole="Terminologies" ToRole="TerminologiesDetails" />
+        </EntityType>
+        <EntityType Name="TerminologiesDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TerminologiesId" Type="Int64" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SortOrder" Type="Int32" Nullable="false" />
+          <Property Name="Selected" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDatetime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Terminology" Relationship="Self.FK_TerminologiesDetails_Terminologies" FromRole="TerminologiesDetails" ToRole="Terminologies" />
+        </EntityType>
+        <EntityType Name="TermsAndCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="TermsAndConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_TermsAndConditions_TermsAndConditions" FromRole="TermsAndConditions" ToRole="Campaigns" />
+        </EntityType>
+        <EntityType Name="UserCampaignMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Campaign" Relationship="Self.FK_UserCampaignMapping_Campaigns" FromRole="UserCampaignMapping" ToRole="Campaigns" />
+          <NavigationProperty Name="Consumers" Relationship="Self.FK_Consumers_UserCampaignMapping" FromRole="UserCampaignMapping" ToRole="Consumers" />
+        </EntityType>
+        <EntityType Name="ValidationMaster">
+          <Key>
+            <PropertyRef Name="ValidationId" />
+          </Key>
+          <Property Name="ValidationId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ValidationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Terminologies" Relationship="Self.FK_Terminologies_Campaigns" FromRole="ValidationMaster" ToRole="Terminologies" />
+          <NavigationProperty Name="ValidationMaster1" Relationship="Self.FK_ValidationMaster_ValidationMaster" FromRole="ValidationMaster" ToRole="ValidationMaster1" />
+          <NavigationProperty Name="ValidationMaster2" Relationship="Self.FK_ValidationMaster_ValidationMaster" FromRole="ValidationMaster1" ToRole="ValidationMaster" />
+        </EntityType>
+        <EntityType Name="SPAttribute">
+          <Key>
+            <PropertyRef Name="AttrId" />
+            <PropertyRef Name="TerminologyId" />
+            <PropertyRef Name="CampaignId" />
+            <PropertyRef Name="AttributeName" />
+            <PropertyRef Name="TableName" />
+            <PropertyRef Name="ColumnName" />
+            <PropertyRef Name="Datatype" />
+          </Key>
+          <Property Name="AttrId" Type="Int64" Nullable="false" />
+          <Property Name="TerminologyId" Type="Int64" Nullable="false" />
+          <Property Name="CampaignId" Type="Int64" Nullable="false" />
+          <Property Name="AttributeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ColumnName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Datatype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Terminology" Relationship="Self.FK_SPAttributes_Terminologies" FromRole="SPAttributes" ToRole="Terminologies" />
+        </EntityType>
+        <Association Name="FK_Campaign_1_Clients">
+          <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Campaigns">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_StoredProcedures_attr_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="Client_StoredProcedures_attr" Type="Self.Client_StoredProcedures_attr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_StoredProcedures_attr">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_StoredProcedures_Client_StoredProcedures">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="Client_StoredProcedures" Type="Self.Client_StoredProcedures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_StoredProcedures">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colors_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="Colors" Type="Self.Color" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colors">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerImports_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="ConsumerImports" Type="Self.ConsumerImport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerImports">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumers_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="Consumers" Type="Self.Consumer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consumers">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagesDetails_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="ImagesDetails" Type="Self.ImagesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagesDetails">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TermsAndConditions_TermsAndConditions">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="TermsAndConditions" Type="Self.TermsAndCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TermsAndConditions">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserCampaignMapping_Campaigns">
+          <End Role="Campaigns" Type="Self.Campaign" Multiplicity="1" />
+          <End Role="UserCampaignMapping" Type="Self.UserCampaignMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campaigns">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserCampaignMapping">
+              <PropertyRef Name="CampaignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPAttributes_Campaigns">
+          <End Role="Terminologies" Type="Self.Terminology" Multiplicity="1" />
+          <End Role="Client_StoredProcedures_attr" Type="Self.Client_StoredProcedures_attr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client_StoredProcedures_attr">
+              <PropertyRef Name="TerminologyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ColorText_Colors">
+          <End Role="Colors" Type="Self.Color" Multiplicity="0..1" />
+          <End Role="ColorText" Type="Self.ColorText" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ColorText">
+              <PropertyRef Name="ColorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumers_ConsentMaster">
+          <End Role="ConsentMaster" Type="Self.ConsentMaster" Multiplicity="0..1" />
+          <End Role="Consumers" Type="Self.Consumer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsentMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consumers">
+              <PropertyRef Name="Consent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerEmails_ConsumerEmails">
+          <End Role="Consumers" Type="Self.Consumer" Multiplicity="1" />
+          <End Role="ConsumerEmails" Type="Self.ConsumerEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerEmails">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerEmails_EMailVerificationStatusMaster">
+          <End Role="EMailVerificationStatusMaster" Type="Self.EMailVerificationStatusMaster" Multiplicity="1" />
+          <End Role="ConsumerEmails" Type="Self.ConsumerEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMailVerificationStatusMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerEmails">
+              <PropertyRef Name="EMailVerificationStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ConsumerReference_Consumers">
+          <End Role="Consumers" Type="Self.Consumer" Multiplicity="1" />
+          <End Role="ConsumerReference" Type="Self.ConsumerReference" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ConsumerReference">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Correspondences_ConsumerReference">
+          <End Role="ConsumerReference" Type="Self.ConsumerReference" Multiplicity="1" />
+          <End Role="Correspondences" Type="Self.Correspondence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ConsumerReference">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Correspondences">
+              <PropertyRef Name="ConsumerReferenceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Consumers_UserCampaignMapping">
+          <End Role="UserCampaignMapping" Type="Self.UserCampaignMapping" Multiplicity="1" />
+          <End Role="Consumers" Type="Self.Consumer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCampaignMapping">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Consumers">
+              <PropertyRef Name="UserCampaignMappingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrationLog_Consumers">
+          <End Role="Consumers" Type="Self.Consumer" Multiplicity="1" />
+          <End Role="RegistrationLog" Type="Self.RegistrationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Consumers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegistrationLog">
+              <PropertyRef Name="ConsumerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Terminologies_HTMLMaster">
+          <End Role="HTMLMaster" Type="Self.HTMLMaster" Multiplicity="1" />
+          <End Role="Terminologies" Type="Self.Terminology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HTMLMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Terminologies">
+              <PropertyRef Name="HTMLElementID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagesDetails_Images">
+          <End Role="Images" Type="Self.Image" Multiplicity="1" />
+          <End Role="ImagesDetails" Type="Self.ImagesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ImagesDetails">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegistrationLog_RegistrationStatusMaster">
+          <End Role="RegistrationStatusMaster" Type="Self.RegistrationStatusMaster" Multiplicity="1" />
+          <End Role="RegistrationLog" Type="Self.RegistrationLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrationStatusMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RegistrationLog">
+              <PropertyRef Name="RegistrationStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SPAttributes_Terminologies">
+          <End Role="Terminologies" Type="Self.Terminology" Multiplicity="1" />
+          <End Role="SPAttributes" Type="Self.SPAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SPAttributes">
+              <PropertyRef Name="TerminologyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Terminologies_Campaigns">
+          <End Role="ValidationMaster" Type="Self.ValidationMaster" Multiplicity="0..1" />
+          <End Role="Terminologies" Type="Self.Terminology" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ValidationMaster">
+              <PropertyRef Name="ValidationId" />
+            </Principal>
+            <Dependent Role="Terminologies">
+              <PropertyRef Name="ValidationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerminologiesDetails_Terminologies">
+          <End Role="Terminologies" Type="Self.Terminology" Multiplicity="1" />
+          <End Role="TerminologiesDetails" Type="Self.TerminologiesDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terminologies">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TerminologiesDetails">
+              <PropertyRef Name="TerminologiesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ValidationMaster_ValidationMaster">
+          <End Role="ValidationMaster" Type="Self.ValidationMaster" Multiplicity="1" />
+          <End Role="ValidationMaster1" Type="Self.ValidationMaster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="ValidationMaster">
+              <PropertyRef Name="ValidationId" />
+            </Principal>
+            <Dependent Role="ValidationMaster1">
+              <PropertyRef Name="ValidationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ConsumerRegistrationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campaigns" EntityType="Self.Campaign" />
+          <EntitySet Name="Client_StoredProcedures" EntityType="Self.Client_StoredProcedures" />
+          <EntitySet Name="Client_StoredProcedures_attr" EntityType="Self.Client_StoredProcedures_attr" />
+          <EntitySet Name="Client_TestCampaign" EntityType="Self.Client_TestCampaign" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Colors" EntityType="Self.Color" />
+          <EntitySet Name="ColorTexts" EntityType="Self.ColorText" />
+          <EntitySet Name="ConsentMasters" EntityType="Self.ConsentMaster" />
+          <EntitySet Name="ConsumerEmails" EntityType="Self.ConsumerEmail" />
+          <EntitySet Name="ConsumerImports" EntityType="Self.ConsumerImport" />
+          <EntitySet Name="ConsumerReferences" EntityType="Self.ConsumerReference" />
+          <EntitySet Name="Consumers" EntityType="Self.Consumer" />
+          <EntitySet Name="Correspondences" EntityType="Self.Correspondence" />
+          <EntitySet Name="EMailVerificationStatusMasters" EntityType="Self.EMailVerificationStatusMaster" />
+          <EntitySet Name="HTMLMasters" EntityType="Self.HTMLMaster" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="ImagesDetails" EntityType="Self.ImagesDetail" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="RegistrationLogs" EntityType="Self.RegistrationLog" />
+          <EntitySet Name="RegistrationStatusMasters" EntityType="Self.RegistrationStatusMaster" />
+          <EntitySet Name="Terminologies" EntityType="Self.Terminology" />
+          <EntitySet Name="TerminologiesDetails" EntityType="Self.TerminologiesDetail" />
+          <EntitySet Name="TermsAndConditions" EntityType="Self.TermsAndCondition" />
+          <EntitySet Name="UserCampaignMappings" EntityType="Self.UserCampaignMapping" />
+          <EntitySet Name="ValidationMasters" EntityType="Self.ValidationMaster" />
+          <EntitySet Name="SPAttributes" EntityType="Self.SPAttribute" />
+          <AssociationSet Name="FK_Campaign_1_Clients" Association="Self.FK_Campaign_1_Clients">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Campaigns" EntitySet="Campaigns" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_StoredProcedures_attr_Campaigns" Association="Self.FK_Client_StoredProcedures_attr_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Client_StoredProcedures_attr" EntitySet="Client_StoredProcedures_attr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_StoredProcedures_Client_StoredProcedures" Association="Self.FK_Client_StoredProcedures_Client_StoredProcedures">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Client_StoredProcedures" EntitySet="Client_StoredProcedures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colors_Campaigns" Association="Self.FK_Colors_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Colors" EntitySet="Colors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerImports_Campaigns" Association="Self.FK_ConsumerImports_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="ConsumerImports" EntitySet="ConsumerImports" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumers_Campaigns" Association="Self.FK_Consumers_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="Consumers" EntitySet="Consumers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagesDetails_Campaigns" Association="Self.FK_ImagesDetails_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="ImagesDetails" EntitySet="ImagesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TermsAndConditions_TermsAndConditions" Association="Self.FK_TermsAndConditions_TermsAndConditions">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="TermsAndConditions" EntitySet="TermsAndConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserCampaignMapping_Campaigns" Association="Self.FK_UserCampaignMapping_Campaigns">
+            <End Role="Campaigns" EntitySet="Campaigns" />
+            <End Role="UserCampaignMapping" EntitySet="UserCampaignMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPAttributes_Campaigns" Association="Self.FK_SPAttributes_Campaigns">
+            <End Role="Terminologies" EntitySet="Terminologies" />
+            <End Role="Client_StoredProcedures_attr" EntitySet="Client_StoredProcedures_attr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ColorText_Colors" Association="Self.FK_ColorText_Colors">
+            <End Role="Colors" EntitySet="Colors" />
+            <End Role="ColorText" EntitySet="ColorTexts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumers_ConsentMaster" Association="Self.FK_Consumers_ConsentMaster">
+            <End Role="ConsentMaster" EntitySet="ConsentMasters" />
+            <End Role="Consumers" EntitySet="Consumers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerEmails_ConsumerEmails" Association="Self.FK_ConsumerEmails_ConsumerEmails">
+            <End Role="Consumers" EntitySet="Consumers" />
+            <End Role="ConsumerEmails" EntitySet="ConsumerEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerEmails_EMailVerificationStatusMaster" Association="Self.FK_ConsumerEmails_EMailVerificationStatusMaster">
+            <End Role="EMailVerificationStatusMaster" EntitySet="EMailVerificationStatusMasters" />
+            <End Role="ConsumerEmails" EntitySet="ConsumerEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ConsumerReference_Consumers" Association="Self.FK_ConsumerReference_Consumers">
+            <End Role="Consumers" EntitySet="Consumers" />
+            <End Role="ConsumerReference" EntitySet="ConsumerReferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Correspondences_ConsumerReference" Association="Self.FK_Correspondences_ConsumerReference">
+            <End Role="ConsumerReference" EntitySet="ConsumerReferences" />
+            <End Role="Correspondences" EntitySet="Correspondences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Consumers_UserCampaignMapping" Association="Self.FK_Consumers_UserCampaignMapping">
+            <End Role="UserCampaignMapping" EntitySet="UserCampaignMappings" />
+            <End Role="Consumers" EntitySet="Consumers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrationLog_Consumers" Association="Self.FK_RegistrationLog_Consumers">
+            <End Role="Consumers" EntitySet="Consumers" />
+            <End Role="RegistrationLog" EntitySet="RegistrationLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Terminologies_HTMLMaster" Association="Self.FK_Terminologies_HTMLMaster">
+            <End Role="HTMLMaster" EntitySet="HTMLMasters" />
+            <End Role="Terminologies" EntitySet="Terminologies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagesDetails_Images" Association="Self.FK_ImagesDetails_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImagesDetails" EntitySet="ImagesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegistrationLog_RegistrationStatusMaster" Association="Self.FK_RegistrationLog_RegistrationStatusMaster">
+            <End Role="RegistrationStatusMaster" EntitySet="RegistrationStatusMasters" />
+            <End Role="RegistrationLog" EntitySet="RegistrationLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SPAttributes_Terminologies" Association="Self.FK_SPAttributes_Terminologies">
+            <End Role="Terminologies" EntitySet="Terminologies" />
+            <End Role="SPAttributes" EntitySet="SPAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Terminologies_Campaigns" Association="Self.FK_Terminologies_Campaigns">
+            <End Role="ValidationMaster" EntitySet="ValidationMasters" />
+            <End Role="Terminologies" EntitySet="Terminologies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerminologiesDetails_Terminologies" Association="Self.FK_TerminologiesDetails_Terminologies">
+            <End Role="Terminologies" EntitySet="Terminologies" />
+            <End Role="TerminologiesDetails" EntitySet="TerminologiesDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ValidationMaster_ValidationMaster" Association="Self.FK_ValidationMaster_ValidationMaster">
+            <End Role="ValidationMaster" EntitySet="ValidationMasters" />
+            <End Role="ValidationMaster1" EntitySet="ValidationMasters" />
+          </AssociationSet>
+          <FunctionImport Name="PerformMatch">
+            <Parameter Name="attributes" Mode="In" Type="String" />
+            <Parameter Name="campaignId" Mode="In" Type="Int64" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ConsumerRegistrationModelStoreContainer" CdmEntityContainer="ConsumerRegistrationEntities">
+          <EntitySetMapping Name="Campaigns">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Campaign">
+              <MappingFragment StoreEntitySet="Campaigns">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_StoredProcedures">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Client_StoredProcedures">
+              <MappingFragment StoreEntitySet="Client_StoredProcedures">
+                <ScalarProperty Name="ClientSPId" ColumnName="ClientSPId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="Get_SPName" ColumnName="Get_SPName" />
+                <ScalarProperty Name="Match_SpName" ColumnName="Match_SpName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_StoredProcedures_attr">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Client_StoredProcedures_attr">
+              <MappingFragment StoreEntitySet="Client_StoredProcedures_attr">
+                <ScalarProperty Name="AttrId" ColumnName="AttrId" />
+                <ScalarProperty Name="TerminologyId" ColumnName="TerminologyId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="Datatype" ColumnName="Datatype" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_TestCampaign">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Client_TestCampaign">
+              <MappingFragment StoreEntitySet="Client_TestCampaign">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="AssessmentNumber" ColumnName="AssessmentNumber" />
+                <ScalarProperty Name="AssessmentAddress" ColumnName="AssessmentAddress" />
+                <ScalarProperty Name="AssessmentNotice" ColumnName="AssessmentNotice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colors">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Color">
+              <MappingFragment StoreEntitySet="Colors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="ColorCode" ColumnName="ColorCode" />
+                <ScalarProperty Name="OldColorCode" ColumnName="OldColorCode" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorTexts">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ColorText">
+              <MappingFragment StoreEntitySet="ColorText">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsentMasters">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ConsentMaster">
+              <MappingFragment StoreEntitySet="ConsentMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsumerEmails">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ConsumerEmail">
+              <MappingFragment StoreEntitySet="ConsumerEmails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="IsPrimaryEMail" ColumnName="IsPrimaryEMail" />
+                <ScalarProperty Name="EMailVerificationStatus" ColumnName="EMailVerificationStatus" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="DateDeactivated" ColumnName="DateDeactivated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsumerImports">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ConsumerImport">
+              <MappingFragment StoreEntitySet="ConsumerImports">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="ConsumerReferenceNumber" ColumnName="ConsumerReferenceNumber" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+                <ScalarProperty Name="AddressLine4" ColumnName="AddressLine4" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConsumerReferences">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ConsumerReference">
+              <MappingFragment StoreEntitySet="ConsumerReference">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConsumerReferenceNumber" ColumnName="ConsumerReferenceNumber" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="SurName" ColumnName="SurName" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine3" ColumnName="AddressLine3" />
+                <ScalarProperty Name="AddressLine4" ColumnName="AddressLine4" />
+                <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consumers">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Consumer">
+              <MappingFragment StoreEntitySet="Consumers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserCampaignMappingId" ColumnName="UserCampaignMappingId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="ActiveFlag" ColumnName="ActiveFlag" />
+                <ScalarProperty Name="Consent" ColumnName="Consent" />
+                <ScalarProperty Name="TandCAcceptedDate" ColumnName="TandCAcceptedDate" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Correspondences">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Correspondence">
+              <MappingFragment StoreEntitySet="Correspondences">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConsumerReferenceId" ColumnName="ConsumerReferenceId" />
+                <ScalarProperty Name="ConsumerCorrespondenceDate" ColumnName="ConsumerCorrespondenceDate" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="BalanceDue" ColumnName="BalanceDue" />
+                <ScalarProperty Name="SecurDocsReference" ColumnName="SecurDocsReference" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMailVerificationStatusMasters">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.EMailVerificationStatusMaster">
+              <MappingFragment StoreEntitySet="EMailVerificationStatusMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HTMLMasters">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.HTMLMaster">
+              <MappingFragment StoreEntitySet="HTMLMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ElementName" ColumnName="ElementName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ImageLocation" ColumnName="ImageLocation" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImagesDetails">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ImagesDetail">
+              <MappingFragment StoreEntitySet="ImagesDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="CallSite" ColumnName="CallSite" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+                <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+                <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+                <ScalarProperty Name="LoggedOnDate" ColumnName="LoggedOnDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationLogs">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.RegistrationLog">
+              <MappingFragment StoreEntitySet="RegistrationLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ConsumerId" ColumnName="ConsumerId" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="StatusChangeDate" ColumnName="StatusChangeDate" />
+                <ScalarProperty Name="StatusChangedBy" ColumnName="StatusChangedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationStatusMasters">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.RegistrationStatusMaster">
+              <MappingFragment StoreEntitySet="RegistrationStatusMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terminologies">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.Terminology">
+              <MappingFragment StoreEntitySet="Terminologies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="HTMLElementID" ColumnName="HTMLElementID" />
+                <ScalarProperty Name="TerminologyKey" ColumnName="TerminologyKey" />
+                <ScalarProperty Name="TerminologyText" ColumnName="TerminologyText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Searchable" ColumnName="Searchable" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="isMandatory" ColumnName="isMandatory" />
+                <ScalarProperty Name="ValidationId" ColumnName="ValidationId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerminologiesDetails">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.TerminologiesDetail">
+              <MappingFragment StoreEntitySet="TerminologiesDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TerminologiesId" ColumnName="TerminologiesId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Selected" ColumnName="Selected" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedDatetime" ColumnName="CreatedDatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TermsAndConditions">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.TermsAndCondition">
+              <MappingFragment StoreEntitySet="TermsAndConditions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="TermsAndConditions" ColumnName="TermsAndConditions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCampaignMappings">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.UserCampaignMapping">
+              <MappingFragment StoreEntitySet="UserCampaignMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ValidationMasters">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.ValidationMaster">
+              <MappingFragment StoreEntitySet="ValidationMaster">
+                <ScalarProperty Name="ValidationId" ColumnName="ValidationId" />
+                <ScalarProperty Name="ValidationName" ColumnName="ValidationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SPAttributes">
+            <EntityTypeMapping TypeName="ConsumerRegistrationModel.SPAttribute">
+              <MappingFragment StoreEntitySet="SPAttributes">
+                <ScalarProperty Name="AttrId" ColumnName="AttrId" />
+                <ScalarProperty Name="TerminologyId" ColumnName="TerminologyId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="AttributeName" ColumnName="AttributeName" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="ColumnName" ColumnName="ColumnName" />
+                <ScalarProperty Name="Datatype" ColumnName="Datatype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PerformMatch" FunctionName="ConsumerRegistrationModel.Store.PerformMatch" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{47192439-D0A9-4D08-959F-308E76B158A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsumerRegistrationPortal.EntityFramework</RootNamespace>
+    <AssemblyName>ConsumerRegistrationPortal.EntityFramework</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.Abstractions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Configuration, Version=5.2.1.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.8.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception, Version=5.5.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Interception.Configuration, Version=5.1.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RegistrationByConvention, Version=2.1.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation, Version=2.1.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.8.3\lib\net46\Unity.ServiceLocation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Campaign.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client_StoredProcedures.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client_StoredProcedures_attr.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Client_TestCampaign.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Color.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ColorText.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsentMaster.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Consumer.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerEmail.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerImport.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerReference.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerRegistrationContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumerRegistrationContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerRegistrationContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerRegistrationContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConsumerRegistrationContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Correspondence.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EMailVerificationStatusMaster.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\DBContextScopeOption.cs" />
+    <Compile Include="HTMLMaster.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImagesDetail.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationLog.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrationStatusMaster.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SPAttribute.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TerminologiesDetail.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Terminology.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TermsAndCondition.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserCampaignMapping.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationMaster.cs">
+      <DependentUpon>ConsumerRegistrationContext.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="ConsumerRegistrationContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ConsumerRegistrationContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ConsumerRegistrationContext.edmx.diagram">
+      <DependentUpon>ConsumerRegistrationContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ConsumerRegistrationContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConsumerRegistrationContext.edmx</DependentUpon>
+      <LastGenOutput>ConsumerRegistrationContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ConsumerRegistrationContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConsumerRegistrationContext.edmx</DependentUpon>
+      <LastGenOutput>ConsumerRegistrationContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsumerRegistrationDomainLayer\ConsumerRegistrationPortal.DomainLayer.csproj">
+      <Project>{3b20e2bc-8c9f-4c47-8ec1-abd6a452acc9}</Project>
+      <Name>ConsumerRegistrationPortal.DomainLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

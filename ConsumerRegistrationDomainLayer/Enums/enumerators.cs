@@ -1,0 +1,1 @@
+﻿public enum LoggingEventType { info, warn, error, fatal}
