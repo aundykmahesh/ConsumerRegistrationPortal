@@ -5,7 +5,7 @@ namespace ConsumerRegistrationPortal.DomainLayer
 {
     public class Logger : Interfaces.IILogger
     {
-        private static NLog.Logger _logger = NLog.LogManager.GetCurrentClassLogger();
+        private static NLog.Logger _logger = LogManager.GetCurrentClassLogger();
 
         public LogLevel ConvertLogLevel(LoggingEventType type)
         {
