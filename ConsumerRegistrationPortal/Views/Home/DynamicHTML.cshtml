@@ -6,13 +6,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.RecordId)
+            @Html.DisplayNameFor(model => model.TerminologyId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CampaignId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HTMLElement)
+            @Html.DisplayNameFor(model => model.ElementName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LabelText)
@@ -33,13 +33,11 @@
             @Html.DisplayNameFor(model => model.ValidationText)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DetailsValue)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DetailsSortOrder)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DetailsSelected)
+           
         </th>
         <th></th>
     </tr>
@@ -47,13 +45,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.RecordId)
+            @Html.DisplayFor(modelItem => item.TerminologyId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CampaignId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.HTMLElement)
+            @Html.DisplayFor(modelItem => item.ElementName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LabelText)
@@ -74,13 +72,12 @@
             @Html.DisplayFor(modelItem => item.ValidationText)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DetailsValue)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DetailsSortOrder)
+          
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DetailsSelected)
+           
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

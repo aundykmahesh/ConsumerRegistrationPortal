@@ -1,0 +1,52 @@
+﻿@using ConsumerRegistrationPortal.BusinessLayer.Dtos
+@using ConsumerRegistrationPortal.DomainLayer
+@model IEnumerable<HTMLGenerationEntity>
+
+@if (ViewData["validatecustomer"] != null && (bool)ViewData["validatecustomer"])
+{
+    @Html.Display("Validation Success");
+}
+else if (ViewData["validatecustomer"] != null && !(bool)ViewData["validatecustomer"])
+{
+    @Html.Display("Validation Failed");
+}
+@using (Html.BeginForm("Index", "Consumer", FormMethod.Post))
+{
+
+    foreach (var item in Model.GroupBy(c=>c.TerminologyId).Select(c=>c.First()))
+    {
+<div>
+    <label>@item.LabelText</label>
+
+    @if (@item.ElementName.ToLower() == HTMLControls.TextBox.ToString().ToLower())
+    {
+        <input type=@item.ElementName name="@item.HTMLElementId" id="@item.HTMLElementId" @item.required data-searchable="@item.Searchable" />
+    }
+    else if (@item.ElementName.ToLower() == HTMLControls.CheckBox.ToString().ToLower())
+    {
+        foreach (var childitem in item.HTMLDetails)
+        {
+            <input type="checkbox" name="@item.HTMLElementId" value=@childitem.Value> @childitem.DisplayText  
+        }
+}
+else if (@item.ElementName.ToLower() == HTMLControls.ListBox.ToString().ToLower())
+{
+
+}
+else if (@item.ElementName.ToLower() == HTMLControls.Dropdownlist.ToString().ToLower())
+{
+
+}
+else if (@item.ElementName.ToLower() == HTMLControls.TextArea.ToString().ToLower())
+{
+
+}
+else if (@item.ElementName.ToLower() == HTMLControls.RadioButton.ToString().ToLower())
+{
+
+}
+</div>
+    }
+    <input type="submit" />
+}
+

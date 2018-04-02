@@ -1,7 +1,12 @@
 ﻿@using ConsumerRegistrationPortal.BusinessLayer.Dtos
 @model List<HTMLGenerationEntity>
 
-@foreach (var item in Model)
-{
-   // var tag = new HtmlTag(item.HTMLElement);
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Index</h2>
+
+@Html.Partial("Partial_DynamicHTML",Model)
+

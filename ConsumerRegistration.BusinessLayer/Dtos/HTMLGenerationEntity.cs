@@ -8,17 +8,28 @@ namespace ConsumerRegistrationPortal.BusinessLayer.Dtos
 {
    public class HTMLGenerationEntity
     {
-        public long RecordId { get; set; }
+        public long TerminologyId { get; set; }
         public long CampaignId { get; set; }
-        public string HTMLElement { get; set; }
+        public string   CampaignName { get; set; }
+        public string ElementName { get; set; }
+        public string HTMLElementId { get; set; }
         public string LabelText { get; set; }
         public string HoverText { get; set; }
         public bool Searchable { get; set; }
         public int SortOrder { get; set; }
         public string required { get; set; }
         public string ValidationText { get; set; }
-        public string DetailsValue { get; set; }
-        public int DetailsSortOrder { get; set; }
-        public bool DetailsSelected { get; set; }
+
+        public List<HTMLGenerationMultipleEntity> HTMLDetails { get; set; }
+    }
+
+    public class HTMLGenerationMultipleEntity
+    {
+        public long Id { get; set; }
+        public long TerminologyId { get; set; }
+        public string DisplayText { get; set; }
+        public string Value { get; set; }
+        public int SortOrder { get; set; }
+        public bool Selected { get; set; }
     }
 }

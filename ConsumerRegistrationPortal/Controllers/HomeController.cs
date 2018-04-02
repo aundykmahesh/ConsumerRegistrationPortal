@@ -20,8 +20,9 @@ namespace ConsumerRegistrationPortal.Controllers
         public ActionResult Index()
         {
             var res = _dynamicHTMLRepository.GetHTMLDbSet(1);
+
             _log.Log("Result success", LoggingEventType.info);
-            return View(res);
+            return View(_dynamicHTMLRepository.GetHTMLMasterTags(res));
         }
 
         public ActionResult About()

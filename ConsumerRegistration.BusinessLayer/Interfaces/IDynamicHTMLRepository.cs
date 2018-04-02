@@ -11,5 +11,7 @@ namespace ConsumerRegistrationPortal.BusinessLayer.Interfaces
     public interface IDynamicHTMLRepository : IRepository<HTMLGenerationEntity>
     {
         List<HTMLGenerationEntity> GetHTMLDbSet(long campaignid);
+        List<HTMLGenerationEntity> GetHTMLMasterTags(List<HTMLGenerationEntity> _htmls);
+        List<HTMLGenerationMultipleEntity> GetHTMLDetails(long _masterTagId);
     }
 }

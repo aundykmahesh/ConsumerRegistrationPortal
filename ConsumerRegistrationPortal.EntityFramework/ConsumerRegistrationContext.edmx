@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ConsumerRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ConsumerRegistrationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Campaigns">
           <Key>
             <PropertyRef Name="Id" />
@@ -273,6 +273,7 @@ warning 6002: The table/view 'ConsumerRegistration.dbo.SPAttributes' does not ha
           </Key>
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TerminologiesId" Type="bigint" Nullable="false" />
+          <Property Name="DisplayText" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="SortOrder" Type="int" Nullable="false" />
           <Property Name="Selected" Type="bit" />
@@ -745,8 +746,7 @@ warning 6002: The table/view 'ConsumerRegistration.dbo.SPAttributes' does not ha
             <End Role="ValidationMaster1" EntitySet="ValidationMaster" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConsumerRegistrationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1046,6 +1046,7 @@ warning 6002: The table/view 'ConsumerRegistration.dbo.SPAttributes' does not ha
           <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDatetime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Terminology" Relationship="Self.FK_TerminologiesDetails_Terminologies" FromRole="TerminologiesDetails" ToRole="Terminologies" />
+          <Property Name="DisplayText" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TermsAndCondition">
           <Key>
@@ -1800,6 +1801,7 @@ warning 6002: The table/view 'ConsumerRegistration.dbo.SPAttributes' does not ha
           <EntitySetMapping Name="TerminologiesDetails">
             <EntityTypeMapping TypeName="ConsumerRegistrationModel.TerminologiesDetail">
               <MappingFragment StoreEntitySet="TerminologiesDetails">
+                <ScalarProperty Name="DisplayText" ColumnName="DisplayText" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TerminologiesId" ColumnName="TerminologiesId" />
                 <ScalarProperty Name="Value" ColumnName="Value" />

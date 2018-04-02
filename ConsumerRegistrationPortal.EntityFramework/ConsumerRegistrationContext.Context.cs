@@ -30,6 +30,7 @@ namespace ConsumerRegistrationPortal.EntityFramework
         public virtual DbSet<Campaign> Campaigns { get; set; }
         public virtual DbSet<Client_StoredProcedures> Client_StoredProcedures { get; set; }
         public virtual DbSet<Client_StoredProcedures_attr> Client_StoredProcedures_attr { get; set; }
+        public virtual DbSet<Client_TestCampaign> Client_TestCampaign { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<ColorText> ColorTexts { get; set; }

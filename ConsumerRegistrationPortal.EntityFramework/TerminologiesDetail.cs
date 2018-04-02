@@ -21,6 +21,7 @@ namespace ConsumerRegistrationPortal.EntityFramework
         public Nullable<bool> Selected { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDatetime { get; set; }
+        public string DisplayText { get; set; }
     
         public virtual Terminology Terminology { get; set; }
     }
