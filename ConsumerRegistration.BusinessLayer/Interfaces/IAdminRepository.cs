@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsumerRegistrationPortal.EntityFramework.Interfaces
+namespace ConsumerRegistrationPortal.BusinessLayer.Interfaces
 {
-    interface IAdminRepository
+   public interface IAdminRepository : IRepository<Dtos.AdminDtos>
     {
     }
 }

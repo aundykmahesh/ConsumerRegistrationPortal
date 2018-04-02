@@ -1,5 +1,6 @@
 using System;
-using ConsumerRegistrationPortal.BusinessLayer;
+using ConsumerRegistrationPortal.BusinessLayer.Interfaces;
+using ConsumerRegistrationPortal.BusinessLayer.Repositories;
 using Unity;
 
 namespace ConsumerRegistrationPortal
@@ -43,7 +44,10 @@ namespace ConsumerRegistrationPortal
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<DomainLayer.Interfaces.IILogger, DomainLayer.Logger>();
-            container.RegisterType<BusinessLayer.Interfaces.IDynamicHTMLRepository, BusinessLayer.Repositories.DynamicHTMLRepository>();
+            container.RegisterType<IDynamicHTMLRepository, DynamicHTMLRepository>();
+            container.RegisterType<IConsumerRepository, ConsumerRepository>();
+            container.RegisterType<IAdminRepository, AdminRepository>();
+            container.RegisterType<IClientRepository, ClientRepository>();
         }
     }
 }

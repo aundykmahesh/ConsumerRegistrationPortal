@@ -21,14 +21,14 @@ namespace ConsumerRegistrationPortal.Controllers
         {
             var res = _dynamicHTMLRepository.GetHTMLDbSet(1);
             _log.Log("Result success", LoggingEventType.info);
-            return View("DynamicHTML", res);
+            return View(res);
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return RedirectToAction("Index", "Consumer");
         }
 
         public ActionResult Contact()

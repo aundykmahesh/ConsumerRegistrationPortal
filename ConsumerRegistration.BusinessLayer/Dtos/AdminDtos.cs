@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsumerRegistrationPortal.BusinessLayer.Interfaces
+namespace ConsumerRegistrationPortal.BusinessLayer.Dtos
 {
-    public interface IClientRepository : IRepository<Dtos.ClientDtos>
+    public class AdminDtos
     {
     }
 }

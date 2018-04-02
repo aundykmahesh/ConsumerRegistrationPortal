@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ConsumerRegistrationPortal.BusinessLayer.Dtos
+@model List<HTMLGenerationEntity>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -9,5 +11,5 @@
 </div>
 
 <div class="row">
-    
+    @Html.Partial("DynamicHTML",Model)
 </div>
