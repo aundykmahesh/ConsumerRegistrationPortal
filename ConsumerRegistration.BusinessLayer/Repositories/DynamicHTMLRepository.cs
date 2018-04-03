@@ -8,6 +8,7 @@ using AutoMapper;
 using ConsumerRegistrationPortal.EntityFramework;
 using ConsumerRegistrationPortal.BusinessLayer.Interfaces;
 using ConsumerRegistrationPortal.BusinessLayer.Dtos;
+using ConsumerRegistrationPortal.DomainLayer;
 
 namespace ConsumerRegistrationPortal.BusinessLayer.Repositories
 {
@@ -56,6 +57,7 @@ namespace ConsumerRegistrationPortal.BusinessLayer.Repositories
             var mapper = config.CreateMapper();
             var returnresults = result.Select(mapper.Map<HTMLGenerationEntity>).ToList();
             returnresults.ForEach(c => c.HTMLDetails = GetHTMLDetails(c.TerminologyId));
+            returnresults.ForEach(c => c.HTMLDetails.ForEach(d => d.ParsedSelectedString = ParseSelectString(c.ElementName,d.Selected)));
 
             return returnresults;
         }
@@ -81,6 +83,7 @@ namespace ConsumerRegistrationPortal.BusinessLayer.Repositories
             results.ToList().ForEach(c => returnresults.Add(c.First()));
 
             returnresults.ForEach(c => c.HTMLDetails = GetHTMLDetails(c.TerminologyId));
+            returnresults.ForEach(c => c.HTMLDetails.ForEach(d => d.ParsedSelectedString = ParseSelectString(c.ElementName,d.Selected)));
             return returnresults;
         }
 
@@ -90,18 +93,42 @@ namespace ConsumerRegistrationPortal.BusinessLayer.Repositories
                     .Where(d => d.TerminologiesId == _masterTagId).ToList()
                 );
 
+        private string ParseSelectString(string elementname, bool selected) {
+            string result = string.Empty;
 
-        //{
-        //    var results = _dbcontext.TerminologiesDetails
-        //            .Where(d => d.TerminologiesId == _masterTagId).ToList();
+            if (!selected) return result;
 
-        //    var config = new MapperConfiguration(cfg => cfg.CreateMap<TerminologiesDetail, HTMLGenerationMultipleEntity>());
-        //   // List<HTMLGenerationMultipleEntity> returnresults = new List<HTMLGenerationMultipleEntity>();
-        //    var mapper = config.CreateMapper();
+            HTMLControls hTMLControls = EnumHelper<HTMLControls>.Parse(elementname.ToLower());
+            switch (hTMLControls)
+            {
+                case HTMLControls.textbox:
+                    break;
+                case HTMLControls.checkbox:
+                    result = "checked";
+                    break;
+                case HTMLControls.listbox:
+                    break;
+                case HTMLControls.radiobutton:
+                    break;
+                case HTMLControls.dropdownlist:
+                    result = "selected";
+                    break;
+                case HTMLControls.textarea:
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
 
-        //    //results.ForEach(returnresults.Add(mapper.Map<HTMLGenerationMultipleEntity>(c => c)));
-        //    List<HTMLGenerationMultipleEntity> returnresults = mapper.Map<List<HTMLGenerationMultipleEntity>>(results);// results.Select(mapper.Map<HTMLGenerationMultipleEntity>).ToList();
-        //    return returnresults;
-        //}
+        public HTMLControls GetHTMLControlNameFromId(long terminologyid)
+        {
+            var results = (from _term in _dbcontext.Terminologies
+                           join
+                           _htmls in _dbcontext.HTMLMasters on _term.HTMLElementID equals _htmls.Id
+                           where _term.Id == terminologyid
+                           select new { TagName = _htmls.ElementName }).SingleOrDefault().ToString();
+            return EnumHelper<HTMLControls>.Parse(results);
+        }
     }
 }

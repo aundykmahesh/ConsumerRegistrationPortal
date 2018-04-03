@@ -50,7 +50,11 @@ namespace ConsumerRegistrationPortal.Controllers
 
         public List<HTMLGenerationMultipleEntity> GetHTMLChildTags(int masterTagId)
         {
-            return _dynamicHTMLRepository.GetHTMLDetails(masterTagId);
+            var results = _dynamicHTMLRepository.GetHTMLDetails(masterTagId);
+            results.ForEach(c => c.ParsedSelectedString = "selected");
+            return results;
         }
+
+        
     }
 }

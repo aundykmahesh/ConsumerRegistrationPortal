@@ -89,6 +89,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsumerRegistrationDomainLayer\ConsumerRegistrationPortal.DomainLayer.csproj">
+      <Project>{3b20e2bc-8c9f-4c47-8ec1-abd6a452acc9}</Project>
+      <Name>ConsumerRegistrationPortal.DomainLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ConsumerRegistrationPortal.EntityFramework\ConsumerRegistrationPortal.EntityFramework.csproj">
       <Project>{47192439-d0a9-4d08-959f-308e76b158a2}</Project>
       <Name>ConsumerRegistrationPortal.EntityFramework</Name>

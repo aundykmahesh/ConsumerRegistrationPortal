@@ -31,5 +31,6 @@ namespace ConsumerRegistrationPortal.BusinessLayer.Dtos
         public string Value { get; set; }
         public int SortOrder { get; set; }
         public bool Selected { get; set; }
+        public string ParsedSelectedString { get; set; }
     }
 }

@@ -13,39 +13,45 @@ else if (ViewData["validatecustomer"] != null && !(bool)ViewData["validatecustom
 @using (Html.BeginForm("Index", "Consumer", FormMethod.Post))
 {
 
-    foreach (var item in Model.GroupBy(c=>c.TerminologyId).Select(c=>c.First()))
+    foreach (var item in Model.GroupBy(c => c.TerminologyId).Select(c => c.First()))
     {
-<div>
-    <label>@item.LabelText</label>
+        <div>
+            <label>@item.LabelText</label>
 
-    @if (@item.ElementName.ToLower() == HTMLControls.TextBox.ToString().ToLower())
-    {
-        <input type=@item.ElementName name="@item.HTMLElementId" id="@item.HTMLElementId" @item.required data-searchable="@item.Searchable" />
-    }
-    else if (@item.ElementName.ToLower() == HTMLControls.CheckBox.ToString().ToLower())
-    {
-        foreach (var childitem in item.HTMLDetails)
-        {
-            <input type="checkbox" name="@item.HTMLElementId" value=@childitem.Value> @childitem.DisplayText  
-        }
-}
-else if (@item.ElementName.ToLower() == HTMLControls.ListBox.ToString().ToLower())
-{
+            @if (@item.ElementName.ToLower() == HTMLControls.textbox.ToString().ToLower())
+            {
+                <input type=@item.ElementName name="@item.HTMLElementId" id="@item.HTMLElementId" @item.required data-searchable="@item.Searchable" />
+            }
+            else if (@item.ElementName.ToLower() == HTMLControls.checkbox.ToString().ToLower())
+            {
+                foreach (var childitem in item.HTMLDetails)
+                {
+                    <input type="checkbox" name="@item.HTMLElementId" value=@childitem.Value @childitem.ParsedSelectedString> @childitem.DisplayText
+                }
+            }
+            else if (@item.ElementName.ToLower() == HTMLControls.listbox.ToString().ToLower())
+            {
 
-}
-else if (@item.ElementName.ToLower() == HTMLControls.Dropdownlist.ToString().ToLower())
-{
+            }
+            else if (@item.ElementName.ToLower() == HTMLControls.dropdownlist.ToString().ToLower())
+            {
+                <select name="@item.HTMLElementId" id="@item.HTMLElementId">
+                    @foreach (var childitem in item.HTMLDetails)
+                    {
+                        <option value="@childitem.Value" @childitem.ParsedSelectedString>@childitem.DisplayText</option>
 
-}
-else if (@item.ElementName.ToLower() == HTMLControls.TextArea.ToString().ToLower())
-{
+                    }
+                </select>
+            }
+            else if (@item.ElementName.ToLower() == HTMLControls.textarea.ToString().ToLower())
+            {
+                <textarea name="@item.HTMLElementId" id="@item.HTMLElementId"></textarea>
+            }
+            else if (@item.ElementName.ToLower() == HTMLControls.radiobutton.ToString().ToLower())
+            {
 
-}
-else if (@item.ElementName.ToLower() == HTMLControls.RadioButton.ToString().ToLower())
-{
-
-}
-</div>
+            }
+        </div>
     }
     <input type="submit" />
 }

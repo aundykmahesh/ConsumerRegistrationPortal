@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\enumerators.cs" />
+    <Compile Include="Enums\EnumHelper.cs" />
     <Compile Include="Interfaces\iLogger.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
